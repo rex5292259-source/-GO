@@ -1,0 +1,5 @@
+{
+  "name": "Taichung Night Market Pulse",
+  "description": "A vibrant guide to Taichung's night markets with real-time rankings, facility maps, and AI-powered route planning.",
+  "requestFramePermissions": ["geolocation"]
+}

@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@theme {
+  --font-headline: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #FFFFFF;
+  --color-on-background: #1A1A1A;
+  
+  --color-primary: #FF8C00; /* Vibrant Orange */
+  --color-primary-container: #FFF4E6;
+  --color-on-primary: #FFFFFF;
+  --color-on-primary-fixed: #FFFFFF;
+
+  --color-secondary: #6B7280; /* Gray 500 */
+  --color-secondary-container: #F3F4F6;
+  --color-on-secondary: #111827;
+  --color-secondary-fixed: #374151;
+
+  --color-tertiary: #10B981; /* Emerald 500 - for safety/eco */
+  --color-tertiary-container: #ECFDF5;
+  --color-on-tertiary: #FFFFFF;
+
+  --color-surface: #FFFFFF;
+  --color-on-surface: #111827;
+  --color-on-surface-variant: #4B5563;
+  --color-outline: #E5E7EB;
+  --color-outline-variant: #F3F4F6;
+
+  --color-surface-container-low: #FAFAFA;
+  --color-surface-container: #F9FAFB;
+  --color-surface-container-high: #F3F4F6;
+  --color-surface-container-highest: #E5E7EB;
+
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-body selection:bg-primary/30;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .soft-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  .soft-shadow-lg {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
