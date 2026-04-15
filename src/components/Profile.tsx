@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import { Languages, CheckCircle2, ChevronRight, Settings, Shield, HelpCircle, LogOut } from 'lucide-react';
+import { Languages, CheckCircle2, ChevronRight, Settings, Shield, HelpCircle, LogOut, Heart, Star, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Profile() {
+interface ProfileProps {
+  onNavigateToStall: (id: string) => void;
+}
+
+export default function Profile({ onNavigateToStall }: ProfileProps) {
   const [showLanguageSwitch, setShowLanguageSwitch] = useState(false);
   const [selectedLang, setSelectedLang] = useState('zh-TW');
+
+  const favoriteStalls = [
+    { id: '1', name: '大甲芋頭城', rating: 4.8, location: '逢甲夜市', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=500' },
+    { id: '2', name: '明倫蛋餅', rating: 4.7, location: '逢甲夜市', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=500' },
+    { id: '3', name: '激旨燒鳥', rating: 4.9, location: '逢甲夜市', image: 'https://images.unsplash.com/photo-1529692236671-f1f6e9460272?auto=format&fit=crop&q=80&w=500' },
+  ];
 
   const languages = [
     { id: 'zh-TW', name: '繁体中文', sub: 'Traditional Chinese', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAh0OOOle65qywFt6ZbcgWM4i6RcKZREQUkH_-LXpEXpGyXGD5e-RBYNIvSeEw1G5isFj-_rcRUDdHHp-9roFqrbcVObDNR5QmrFrSm5BnAyua8wZZva4SnipBAg3GIfEy6Q2uAUoJnO6tptXaHAY3v3xwcaMJSTVwxSrY4n91qJfTljZZxOI6QaQK2DXbT9SAfr9DGk-A6gtg5E-gn0-PMPRLWqTWzDoqrfdJk0Wx7IjHQoZfTURoZjYYisrDG6NsuAYmLEKQdKsau' },
@@ -90,6 +100,43 @@ export default function Profile() {
         </div>
         <h2 className="text-3xl font-headline font-black mt-8 text-on-surface">台中食客</h2>
         <p className="text-on-surface-variant text-[10px] font-black uppercase tracking-widest opacity-60 mt-1">Taichung Foodie • rex5292259@gmail.com</p>
+      </section>
+
+      {/* Favorites Section */}
+      <section className="mb-12">
+        <div className="flex items-center justify-between px-2 mb-6">
+          <div className="flex items-center gap-3">
+            <Heart className="text-error" size={24} fill="currentColor" />
+            <h3 className="text-2xl font-headline font-black text-on-surface">已收藏店家</h3>
+          </div>
+          <span className="text-[10px] font-black tracking-widest uppercase text-on-surface-variant opacity-40">{favoriteStalls.length} STALLS</span>
+        </div>
+        
+        <div className="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
+          {favoriteStalls.map((stall) => (
+            <motion.button
+              key={stall.id}
+              whileHover={{ y: -5 }}
+              onClick={() => onNavigateToStall(stall.id)}
+              className="flex-none w-64 bg-white rounded-[2rem] border border-outline overflow-hidden soft-shadow-lg group text-left"
+            >
+              <div className="h-32 overflow-hidden relative">
+                <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={stall.image} />
+                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-full flex items-center gap-1 border border-outline">
+                  <Star size={10} fill="currentColor" className="text-primary" />
+                  <span className="text-[10px] font-black text-on-surface">{stall.rating}</span>
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-headline font-black text-lg text-on-surface mb-1 group-hover:text-primary transition-colors">{stall.name}</h4>
+                <div className="flex items-center gap-1.5 text-on-surface-variant opacity-60">
+                  <MapPin size={12} />
+                  <span className="text-[10px] font-black uppercase tracking-widest">{stall.location}</span>
+                </div>
+              </div>
+            </motion.button>
+          ))}
+        </div>
       </section>
 
       {/* Profile Menu */}

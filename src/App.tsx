@@ -61,7 +61,7 @@ export default function App() {
       case 'orders':
         return <Orders />;
       case 'profile':
-        return <Profile />;
+        return <Profile onNavigateToStall={handleNavigateToStall} />;
       case 'stall-detail':
         return (
           <StallDetail 
