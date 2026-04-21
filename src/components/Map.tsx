@@ -1,24 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { Navigation, LocateFixed, Info, Car, Trash2, User as UserIcon, Store, Star } from 'lucide-react';
 import { motion } from 'motion/react';
-import { APIProvider, Map as GoogleMap, Marker, InfoWindow, useMap } from '@vis.gl/react-google-maps';
+import { APIProvider, Map as GoogleMap, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
+import { 
+  Utensils, 
+  Coffee, 
+  Gamepad2, 
+  Navigation, 
+  LocateFixed, 
+  Info, 
+  Car, 
+  Trash2, 
+  User as UserIcon, 
+  Store, 
+  Star,
+  MapPin
+} from 'lucide-react';
 
 interface MapProps {
   onNavigateToStall: (id: string) => void;
 }
 
 const STALLS = [
-  { id: '1', name: '大甲芋頭城', rating: 5.0, queueTime: '15 min', popularity: 'High', position: { lat: 24.1788, lng: 120.6465 } },
-  { id: '2', name: '明倫蛋餅', rating: 4.8, queueTime: '25 min', popularity: 'Very High', position: { lat: 24.1795, lng: 120.6458 } },
-  { id: '3', name: '激旨燒鳥', rating: 4.7, queueTime: '10 min', popularity: 'Medium', position: { lat: 24.1802, lng: 120.6472 } },
-  { id: '4', name: '老虎堂黑糖專賣', rating: 4.6, queueTime: '5 min', popularity: 'Medium', position: { lat: 24.1782, lng: 120.6480 } },
+  { id: '1', name: '大甲芋頭城', rating: 5.0, queueTime: '15 min', popularity: 'High', type: 'snacks', position: { lat: 24.1788, lng: 120.6465 } },
+  { id: '2', name: '明倫蛋餅', rating: 4.8, queueTime: '25 min', popularity: 'Very High', type: 'snacks', position: { lat: 24.1795, lng: 120.6458 } },
+  { id: '3', name: '激旨燒鳥', rating: 4.7, queueTime: '10 min', popularity: 'Medium', type: 'snacks', position: { lat: 24.1802, lng: 120.6472 } },
+  { id: '4', name: '老虎堂黑糖專賣', rating: 4.6, queueTime: '5 min', popularity: 'Medium', type: 'drinks', position: { lat: 24.1782, lng: 120.6480 } },
+  { id: '5', name: '射擊氣球王', rating: 4.5, queueTime: '2 min', popularity: 'Medium', type: 'games', position: { lat: 24.1810, lng: 120.6450 } },
+  { id: '6', name: '套圈圈大師', rating: 4.3, queueTime: '0 min', popularity: 'Low', type: 'games', position: { lat: 24.1775, lng: 120.6455 } },
 ];
+
+const TYPE_CONFIG = {
+  snacks: { color: '#FF4D12', icon: Utensils, label: '小吃' },
+  drinks: { color: '#00B4D8', icon: Coffee, label: '飲料' },
+  games: { color: '#7209B7', icon: Gamepad2, label: '遊戲' },
+};
 
 export default function Map({ onNavigateToStall }: MapProps) {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [selectedStall, setSelectedStall] = useState<typeof STALLS[0] | null>(null);
   const [showHeatmap, setShowHeatmap] = useState(true);
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyAUOA0i3XTL0Eex8s701l1t5Fze74KRkb4';
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -49,7 +70,7 @@ export default function Map({ onNavigateToStall }: MapProps) {
           onClick={() => setShowHeatmap(!showHeatmap)}
           className={`px-5 py-2.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all border ${showHeatmap ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20' : 'bg-surface-container border-outline text-on-surface-variant'}`}
         >
-          {showHeatmap ? '人潮熱點：開啟' : '人潮熱點：關閉'}
+          {showHeatmap ? '人潮擁擠程度：開啟' : '人潮擁擠程度：關閉'}
         </button>
       </header>
 
@@ -63,37 +84,60 @@ export default function Map({ onNavigateToStall }: MapProps) {
             disableDefaultUI={true}
             className="w-full h-full"
           >
-            {/* Mock Heatmap Overlay */}
+            {/* Mock Heatmap Overlay - Representing Crowd Congestion Levels */}
             {showHeatmap && (
-              <div className="absolute inset-0 pointer-events-none z-0">
-                <div className="absolute top-1/4 left-1/3 w-64 h-64 bg-error/10 rounded-full blur-[60px]"></div>
-                <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-primary/10 rounded-full blur-[40px]"></div>
+              <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+                {/* Extremely Crowded - Red Zones */}
+                <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-red-500/25 rounded-full blur-[70px] animate-pulse"></div>
+                <div className="absolute bottom-1/4 right-1/3 w-60 h-60 bg-red-600/20 rounded-full blur-[60px]"></div>
+                
+                {/* Crowded - Orange/Yellow Zones */}
+                <div className="absolute top-1/2 right-1/4 w-56 h-56 bg-orange-400/15 rounded-full blur-[50px]"></div>
+                <div className="absolute bottom-1/2 left-1/3 w-48 h-48 bg-yellow-400/10 rounded-full blur-[40px]"></div>
+                
+                {/* Indicator text (Floating) */}
+                <div className="absolute top-1/4 left-1/4 bg-red-500/80 text-white text-[8px] font-black px-2 py-0.5 rounded-full backdrop-blur-sm shadow-lg z-10 uppercase tracking-tighter">
+                  極度擁擠
+                </div>
+                <div className="absolute bottom-1/4 right-1/3 bg-red-500/80 text-white text-[8px] font-black px-2 py-0.5 rounded-full backdrop-blur-sm shadow-lg z-10 uppercase tracking-tighter">
+                  人潮高峰
+                </div>
               </div>
             )}
 
             {userLocation && (
-              <Marker
+              <AdvancedMarker
                 position={userLocation}
                 title="您的位置"
-                icon={{
-                  path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z',
-                  fillColor: '#FF8C00',
-                  fillOpacity: 1,
-                  strokeWeight: 2,
-                  strokeColor: '#FFFFFF',
-                  scale: 1.5,
-                }}
-              />
+              >
+                <Pin background={'#FF8C00'} glyphColor={'#FFF'} borderColor={'#FFF'}>
+                  <UserIcon size={12} className="text-white" />
+                </Pin>
+              </AdvancedMarker>
             )}
 
-            {STALLS.map((stall) => (
-              <Marker
-                key={stall.id}
-                position={stall.position}
-                onClick={() => setSelectedStall(stall)}
-                title={stall.name}
-              />
-            ))}
+            {STALLS.map((stall) => {
+              const config = TYPE_CONFIG[stall.type as keyof typeof TYPE_CONFIG];
+              const Icon = config.icon;
+              
+              return (
+                <AdvancedMarker
+                  key={stall.id}
+                  position={stall.position}
+                  onClick={() => setSelectedStall(stall)}
+                  title={stall.name}
+                >
+                  <Pin 
+                    background={config.color} 
+                    glyphColor={'#FFF'} 
+                    borderColor={'#FFFFFF'}
+                    scale={selectedStall?.id === stall.id ? 1.2 : 1}
+                  >
+                    <Icon size={12} className="text-white" />
+                  </Pin>
+                </AdvancedMarker>
+              );
+            })}
 
             {selectedStall && (
               <InfoWindow
