@@ -12,6 +12,14 @@ export default function StallDetail({ stallId, onOrderNow }: StallDetailProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
+  // Generate a random mock Food Business Registration Number
+  const regNumber = React.useMemo(() => {
+    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // A-Z
+    const num1 = Math.floor(10000000 + Math.random() * 90000000); 
+    const num2 = Math.floor(10000 + Math.random() * 90000);
+    return `${letter}-${num1}-${num2}-1`;
+  }, []);
+
   // Mock data for the stall
   const stall = {
     id: stallId,
@@ -23,7 +31,7 @@ export default function StallDetail({ stallId, onOrderNow }: StallDetailProps) {
     tags: ['OPEN NOW', 'MICHELIN GUIDE'],
     location: '逢甲夜市 • 慶和街 12 號',
     origin: '台灣本土豬肉',
-    safetyBadges: ['SGS 認證', 'HACCP 認證'],
+    safetyBadges: ['GHP 認證評分：良'],
     dietary: ['Halal Friendly', 'Vegetarian Available']
   };
 
@@ -35,6 +43,13 @@ export default function StallDetail({ stallId, onOrderNow }: StallDetailProps) {
 
   return (
     <div className="pb-48 bg-background">
+      {/* Registration Number Header */}
+      <div className="bg-surface-container-low px-6 py-2 border-b border-outline">
+        <p className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest opacity-60">
+          食品業者登錄字號：{regNumber}
+        </p>
+      </div>
+
       {/* Hero Section */}
       <section className="relative h-96 w-full overflow-hidden">
         <img className="w-full h-full object-cover opacity-80" src={stall.image} />
