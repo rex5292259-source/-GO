@@ -8,9 +8,10 @@ interface HomeProps {
   onNavigateToRoute: () => void;
   onNavigateToMap: () => void;
   onNavigateToRanking: () => void;
+  onNavigateToEvents: () => void;
 }
 
-export default function Home({ onNavigateToStall, onNavigateToRoute, onNavigateToMap, onNavigateToRanking }: HomeProps) {
+export default function Home({ onNavigateToStall, onNavigateToRoute, onNavigateToMap, onNavigateToRanking, onNavigateToEvents }: HomeProps) {
   const trendingFoods: FoodItem[] = [
     {
       id: '1',
@@ -129,12 +130,15 @@ export default function Home({ onNavigateToStall, onNavigateToRoute, onNavigateT
             </div>
             <span className="font-black text-lg font-headline text-on-surface">熱門排行</span>
           </button>
-          <div className="col-span-2 h-20 bg-white border border-outline rounded-2xl px-5 flex items-center gap-4 hover:border-primary transition-all soft-shadow">
+          <button 
+            onClick={onNavigateToEvents}
+            className="col-span-2 h-20 bg-white border border-outline rounded-2xl px-5 flex items-center gap-4 hover:border-primary transition-all soft-shadow"
+          >
             <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
               <Calendar className="text-primary" size={22} />
             </div>
             <span className="font-black text-lg font-headline text-on-surface">限時活動</span>
-          </div>
+          </button>
         </div>
       </section>
 

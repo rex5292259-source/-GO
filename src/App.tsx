@@ -9,6 +9,7 @@ import Orders from './components/Orders';
 import Profile from './components/Profile';
 import StallDetail from './components/StallDetail';
 import RoutePlanning from './components/RoutePlanning';
+import EventHub from './components/EventHub';
 import { View } from './types';
 
 export default function App() {
@@ -25,6 +26,8 @@ export default function App() {
       setCurrentView('home');
     } else if (currentView === 'route-planning') {
       setCurrentView('map');
+    } else if (currentView === 'event-hub') {
+      setCurrentView('home');
     } else {
       setCurrentView('home');
     }
@@ -39,6 +42,7 @@ export default function App() {
       case 'profile': return '個人中心';
       case 'stall-detail': return '攤位詳情';
       case 'route-planning': return 'AI 智慧路徑';
+      case 'event-hub': return '限時活動專區';
       default: return '台中夜市GO';
     }
   };
@@ -52,6 +56,7 @@ export default function App() {
             onNavigateToRoute={() => setCurrentView('route-planning')}
             onNavigateToMap={() => setCurrentView('map')}
             onNavigateToRanking={() => setCurrentView('ranking')}
+            onNavigateToEvents={() => setCurrentView('event-hub')}
           />
         );
       case 'ranking':
@@ -71,8 +76,24 @@ export default function App() {
         );
       case 'route-planning':
         return <RoutePlanning onBack={handleBack} />;
+      case 'event-hub':
+        return (
+          <EventHub 
+            onBack={handleBack} 
+            onNavigateToStall={handleNavigateToStall}
+            onNavigateToMap={() => setCurrentView('map')}
+          />
+        );
       default:
-        return <Home onNavigateToStall={handleNavigateToStall} onNavigateToRoute={() => setCurrentView('route-planning')} onNavigateToMap={() => setCurrentView('map')} onNavigateToRanking={() => setCurrentView('ranking')} />;
+        return (
+          <Home 
+            onNavigateToStall={handleNavigateToStall} 
+            onNavigateToRoute={() => setCurrentView('route-planning')} 
+            onNavigateToMap={() => setCurrentView('map')} 
+            onNavigateToRanking={() => setCurrentView('ranking')} 
+            onNavigateToEvents={() => setCurrentView('event-hub')} 
+          />
+        );
     }
   };
 
@@ -80,7 +101,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-on-background font-body selection:bg-primary/30">
       <TopNav 
         title={getTitle()} 
-        showBack={currentView === 'stall-detail' || currentView === 'route-planning'}
+        showBack={currentView === 'stall-detail' || currentView === 'route-planning' || currentView === 'event-hub'}
         onBack={handleBack}
         showFavorite={currentView === 'stall-detail'}
         isFavorite={false}
