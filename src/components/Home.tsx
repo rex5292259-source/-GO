@@ -18,7 +18,7 @@ export default function Home({ onNavigateToStall, onNavigateToRoute, onNavigateT
       rating: 4.9,
       reviews: 1248,
       description: '外酥內嫩的極致口感，搭配特製胡椒粉，是每位老饕必點的經典。',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlEgSoTKG7Q53dFlvRinqQqcLVwask7jYnYEGztKim47BvSMWrr1WOOOuR1NMCWbu3FHpsvOTi4xAXArcmq_O9qvGINGa-DR1Yb4TjekOg9dz-GWNUNP-Uu3-w5lhtMOg8uIbmBHBozBhbGFEcFzclCog2ObBpeGhWPy8v18pFVNHdlNAJXuDYEg0kuM340MOHbEYTPtdvGKzCMqO6Ab9Uc9eTBT4uec_KD_wA51P8f5lSTT-go3yg7S1edZ2r6qtZpIcrdCmLRouH',
+      image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=500',
       tags: ['逢甲必吃', '銅板美食']
     },
     {
@@ -27,7 +27,7 @@ export default function Home({ onNavigateToStall, onNavigateToRoute, onNavigateT
       rating: 4.8,
       reviews: 2100,
       description: '手工熬煮黑糖珍珠，搭配小農鮮奶，每一口都是濃醇香的幸福感。',
-      image: 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=500',
+      image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=500',
       tags: ['一中商圈', '台中之光']
     }
   ];

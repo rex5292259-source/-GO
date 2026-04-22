@@ -23,14 +23,14 @@ const AVAILABLE_STALLS = [
   { name: '明倫蛋餅', category: '經典小吃', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=500' },
   { name: '激旨燒鳥', category: '串燒', image: 'https://images.unsplash.com/photo-1529692236671-f1f6e9460272?auto=format&fit=crop&q=80&w=500' },
   { name: '阿財碳烤大香腸', category: '經典小吃', image: 'https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?auto=format&fit=crop&q=80&w=500' },
-  { name: '脆皮大雞排', category: '炸物', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=500' },
-  { name: '黑糖珍珠鮮奶', category: '飲品', image: 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=500' },
+  { name: '脆皮大雞排', category: '炸物', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=500' },
+  { name: '黑糖珍珠鮮奶', category: '飲品', image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=500' },
   { name: '極味拉麵屋', category: '拉麵', image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=500' },
   { name: '炭火漢堡製造所', category: '漢堡', image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&q=80&w=500' },
   { name: '酥炸大魷魚', category: '海鮮', image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=500' },
   { name: '木瓜牛奶', category: '飲品', image: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=500' },
   { name: '麻辣臭豆腐', category: '經典小吃', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=500' },
-  { name: '豪大大雞排', category: '炸物', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=500' },
+  { name: '豪大大雞排', category: '炸物', image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=500' },
   { name: '大腸包小腸', category: '經典小吃', image: 'https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?auto=format&fit=crop&q=80&w=500' }
 ];
 
@@ -53,7 +53,7 @@ export default function RoutePlanning({ onBack }: RoutePlanningProps) {
       name: '豪大大雞排', 
       time: '15 min', 
       desc: '現點現炸，排隊稍久。', 
-      image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=500',
+      image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=500',
       tag: '稍擁擠',
       dist: '300m',
       isCrowded: true
@@ -63,7 +63,7 @@ export default function RoutePlanning({ onBack }: RoutePlanningProps) {
       name: '黑糖珍珠鮮奶', 
       time: '5 min', 
       desc: '解膩聖品，多層次口感。', 
-      image: 'https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&q=80&w=500',
+      image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=500',
       tag: '推薦搭配',
       dist: '100m'
     }
