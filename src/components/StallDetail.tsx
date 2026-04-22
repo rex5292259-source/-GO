@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Star, Wallet, CreditCard, Banknote, ShieldCheck, Leaf, ShoppingBasket, Zap, Heart, Navigation as NavigationIcon } from 'lucide-react';
+import { Clock, Star, Wallet, CreditCard, Banknote, ShieldCheck, Leaf, ShoppingBasket, Zap, Heart, Navigation as NavigationIcon, Smartphone, QrCode } from 'lucide-react';
 import { motion } from 'motion/react';
 import { FoodItem } from '../types';
 
@@ -117,15 +117,18 @@ export default function StallDetail({ stallId, onOrderNow }: StallDetailProps) {
 
         <div className="bg-white p-5 rounded-3xl border border-outline flex flex-col justify-between h-32 soft-shadow">
           <p className="text-on-surface-variant text-[10px] font-black tracking-widest uppercase opacity-60">支付方式</p>
-          <div className="flex gap-2">
-            <div className="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center text-on-surface">
-              <Wallet size={16} />
+          <div className="flex gap-2 flex-wrap">
+            <div className="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center text-on-surface" title="現金">
+              <Banknote size={16} />
             </div>
-            <div className="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center text-on-surface">
+            <div className="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center text-on-surface" title="電子支付">
+              <Smartphone size={16} />
+            </div>
+            <div className="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center text-on-surface" title="第三方支付">
+              <QrCode size={16} />
+            </div>
+            <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary" title="信用卡">
               <CreditCard size={16} />
-            </div>
-            <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-              <Zap size={16} fill="currentColor" />
             </div>
           </div>
         </div>

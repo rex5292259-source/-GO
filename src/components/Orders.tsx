@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Clock, Bell, Wallet, CreditCard, Banknote, QrCode, CheckCircle2 } from 'lucide-react';
+import { Clock, Bell, Wallet, CreditCard, Banknote, QrCode, CheckCircle2, Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 type OrderStatus = 'payment' | 'confirmed';
 
 export default function Orders() {
   const [status, setStatus] = useState<OrderStatus>('payment');
-  const [paymentMethod, setPaymentMethod] = useState<string>('wallet');
+  const [paymentMethod, setPaymentMethod] = useState<string>('cash');
 
   const paymentMethods = [
-    { id: 'wallet', name: '電子錢包', icon: Wallet },
+    { id: 'cash', name: '現金', icon: Banknote },
+    { id: 'epay', name: '電子支付', icon: Smartphone },
+    { id: 'thirdparty', name: '第三方支付', icon: QrCode },
     { id: 'credit', name: '信用卡', icon: CreditCard },
-    { id: 'cash', name: '現金支付', icon: Banknote },
-    { id: 'qr', name: '掃碼支付', icon: QrCode },
   ];
 
   const cartItems = [
