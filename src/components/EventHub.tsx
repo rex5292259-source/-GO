@@ -29,7 +29,7 @@ const EVENTS: Event[] = [
     description: '匯集逢甲最道地的日式攤位，從章魚燒到大阪燒，讓你一秒到日本！包含多家網路人氣名店，限時一週全面優惠。',
     startDate: '2026-04-20',
     endDate: '2026-04-27',
-    image: 'https://images.unsplash.com/photo-1580442151529-343f2f5e0e27?auto=format&fit=crop&q=80&w=1000',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1000',
     badge: 'Limited',
     vendors: ['v1', 'v2', 'v3'],
     featuredDishes: [
@@ -40,7 +40,7 @@ const EVENTS: Event[] = [
         rating: 4.8,
         reviews: 120,
         description: '超大顆章魚丁，外酥內軟。',
-        image: 'https://images.unsplash.com/photo-1598511757337-fe2cad875242?auto=format&fit=crop&q=80&w=500',
+        image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=500',
         tags: ['熱門', '道地']
       },
       {
@@ -80,9 +80,9 @@ const EVENTS: Event[] = [
 ];
 
 const VENDORS: Record<string, Store & { rating: number; category: string; queue: string }> = {
-  'v1': { id: 'v1', name: '築地銀章魚燒', location: '慶和街', image: 'https://images.unsplash.com/photo-1598511757337-fe2cad875242?auto=format&fit=crop&q=80&w=500', rating: 4.7, category: '小吃', queue: '5組候位' },
-  'v2': { id: 'v2', name: '大和大阪燒', location: '文華路', image: 'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&q=80&w=500', rating: 4.5, category: '正餐', queue: '2組候位' },
-  'v3': { id: 'v3', name: '京都宇治抹茶', location: '福星路', image: 'https://images.unsplash.com/photo-1582733315364-b499f57ebbf2?auto=format&fit=crop&q=80&w=500', rating: 4.9, category: '甜點', queue: '免排隊' },
+  'v1': { id: 'v1', name: '築地銀章魚燒', location: '慶和街', image: 'https://images.unsplash.com/photo-1614051608933-912f6044737d?auto=format&fit=crop&q=80&w=500', rating: 4.7, category: '小吃', queue: '5組候位' },
+  'v2': { id: 'v2', name: '大和大阪燒', location: '文華路', image: 'https://images.unsplash.com/photo-1528156114115-4ba2e1d09228?auto=format&fit=crop&q=80&w=500', rating: 4.5, category: '正餐', queue: '2組候位' },
+  'v3': { id: 'v3', name: '京都宇治抹茶', location: '福星路', image: 'https://images.unsplash.com/photo-1536700503339-1e4b06520771?auto=format&fit=crop&q=80&w=500', rating: 4.9, category: '甜點', queue: '免排隊' },
 };
 
 const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
